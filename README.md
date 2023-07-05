@@ -1,5 +1,7 @@
 ## Transactional Outbox Pattern using AWS serverless services
 
+The Transaction Outbox pattern is a popular approach for ensuring reliable and consistent message delivery in distributed systems. In the context of AWS serverless services, you can implement the Transaction Outbox pattern using various AWS services.
+
 This is a sample AWS SAM (Serverless Application Model) template that creates an API Gateway, multiple Lambdas, DynamoDB Table, SQS Queues, and an EventBridge EventBus in order to implement a Transactional Outbox Pattern. The following steps guide you on how to use this template.
 
 ## Prerequisites
@@ -33,7 +35,7 @@ This is a sample AWS SAM (Serverless Application Model) template that creates an
 Post deployment, your API Gateway endpoint URL can be retrieved from the Outputs section of your CloudFormation stack. You can test your endpoint using tools such as curl or Postman.
 
 ## Implementation Details
-The implemented stack is based on a serverless architecture, where API Gateway is used to trigger a DynamoDB operation via a POST request. The change in the DynamoDB triggers an EventBridge EventBus via AWS Pipes. This EventBus invokes the relevant Lambda function through an SQS Queue, depending on whether an order has been created or updated.
+The implemented stack is based on a serverless architecture, where API Gateway is used to trigger a DynamoDB operation via a POST request. The change in the DynamoDB triggers an EventBridge EventBus via AWS Pipes. This EventBus invokes the Lambda function through an SQS Queue when an order has been created.
 
 Please note that the Lambda functions require Python 3.10 and the code must be placed in a `src/` directory. The specific Lambda function handlers to be executed are `order_created_publisher_one.lambda_handler` and `order_created_publisher_two.lambda_handler`.
 
