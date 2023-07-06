@@ -465,3 +465,7 @@ Outputs:
     Value: !Sub 
       - 'https://${ApiId}.execute-api.${AWS::Region}.amazonaws.com/${StageName}/createId'
       - ApiId: !Ref OrderApi
+
+  DynamoDBTableName:
+    Description: DynamoDB table name
+    Value: !Ref DynamoDBOrderTable
